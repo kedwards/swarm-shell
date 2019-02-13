@@ -1,0 +1,29 @@
+---
+- import_tasks: manager.yml
+  tags:
+    - swarm_status
+
+- import_tasks: worker.yml
+  tags:
+    - swarm_status
+
+- import_tasks: init_swarm.yml
+  tags:
+    - init
+
+- import_tasks: tokens.yml
+  tags:
+    - tokens
+
+- debug: msg="{{ groups }}"
+  run_once: true
+
+- import_tasks: join_managers.yml
+  tags:
+    - join
+    - managers
+
+- import_tasks: join_workers.yml
+  tags:
+    - join
+    - workers

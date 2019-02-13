@@ -1,0 +1,56 @@
+---
+- type: "vb"
+  enabled: true
+  box: "debian/contrib-stretch64"
+  name: "manager1"
+  ip_addr: "192.168.100.101"
+  ram: "512"
+  vcpu: "1"
+
+- type: "vb"
+  enabled:  true
+  box: "debian/contrib-stretch64"
+  name: "worker1"
+  ip_addr: "192.168.100.110"
+  ram: "512"
+  vcpu: "1"
+
+- type: "vb"
+  enabled: true
+  box: "debian/contrib-stretch64"
+  name: "worker2"
+  ip_addr: "192.168.100.111"
+  ram: "512"
+  vcpu: "1"
+
+- type: "vb"
+  enabled: true
+  box: "debian/contrib-stretch64"
+  name: "worker3"
+  ip_addr: "192.168.100.112"
+  ram: "512"
+  vcpu: "1"
+
+- type: "vb"
+  enabled: true
+  box: "debian/contrib-stretch64"
+  name: "dockerhostvm"
+  ip_addr: "192.168.100.113"
+  ram: "512"
+  vcpu: "1"
+
+- type: "aws"
+  enabled: false
+  box: "aws-dummy"
+  keypair_name: "kedwards_keca"
+  instance_type: "t2.micro"
+  region: "ca-central-1"
+  subnet_id: "subnet-050e2d2e8c3ce2d92"
+  associate_public_ip: true
+  ami: "ami-01872e06509e14f77" # ca-central
+  private_key_path: "~/.ssh/kedwards_keca.pem"
+  tags:
+    name: "dockerhostvmaws"
+    team: "devops"
+  security_group: "sg-036a315514f2508f9"
+  name: "dockerhostvmaws"

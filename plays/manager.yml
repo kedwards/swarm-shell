@@ -1,0 +1,24 @@
+---
+- hosts: managers:workers
+  become: true
+  vars:
+    use_docker_info: false
+  tasks:
+    - name: load docker info as facts (determine swarm status)
+      docker_info_facts:
+
+    - name: create swarm_manager_operational group
+      add_host:
+        hostname: "{{ item }}"
+        groups: swarm_manager_operational
+      with_items: "{{ play_hosts }}"
+      when: hostvars[item]['docker_info']['Swarm']['LocalNodeState'] == 'active'
+      run_once: true
+
+    - name: create swarm_manager_bootstrap group
+      add_host:
+        hostname: "{{ item }}"
+        groups: swarm_manager_bootstrap
+      with_items: "{{ play_hosts }}"
+      when: hostvars[item]['docker_info']['Swarm']['LocalNodeState'] != 'active'
+      run_once: true

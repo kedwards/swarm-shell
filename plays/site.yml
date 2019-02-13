@@ -1,0 +1,10 @@
+---
+# This is a sitewide playbook
+# filename: site.yml
+- import_playbook: docker.yml
+- import_playbook: manager.yml
+- import_playbook: worker.yml
+- import_playbook: init_swarm.yml
+- import_playbook: tokens.yml
+- import_playbook: join_managers.yml
+- import_playbook: join_workers.yml
